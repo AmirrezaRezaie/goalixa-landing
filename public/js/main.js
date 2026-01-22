@@ -1,0 +1,1 @@
+console.log("Goalixa Landing Page Loaded");
