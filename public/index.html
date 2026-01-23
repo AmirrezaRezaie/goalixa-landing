@@ -3,29 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goalixa</title>
+    <title>Goalixa | Plan, focus, finish</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="hero">
-        <h1>Welcome to Goalixa</h1>
-        <p>Track your goals, manage your tasks, and stay productive.</p>
-        <a href="#" class="btn btn-primary">Get Started</a>
+        <div class="container">
+            <nav class="nav">
+                <a class="logo" href="#">Goalixa</a>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#steps">How it works</a>
+                    <a href="#cta">Get started</a>
+                </div>
+                <a class="btn btn-outline" href="/login">Log in</a>
+            </nav>
+
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Plan your goals. Focus today. Finish stronger.</h1>
+                    <p>
+                        Goalixa is a simple workspace for goals, tasks, and progress.
+                        Start here, then log in to build your momentum.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="/login">Log in to Goalixa</a>
+                        <a class="btn btn-ghost" href="https://github.com/AmirrezaRezaie/Goalixa" target="_blank" rel="noopener">
+                            View project
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-panel">
+                    <div class="panel-header">
+                        <span>Today</span>
+                        <span class="tag">3 priorities</span>
+                    </div>
+                    <h3>Daily Focus</h3>
+                    <ul>
+                        <li>Define weekly goal</li>
+                        <li>Finish top task</li>
+                        <li>Review progress</li>
+                    </ul>
+                    <div class="panel-progress">
+                        <span>Weekly progress</span>
+                        <div class="bar"><span></span></div>
+                        <small>72% complete</small>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <section class="features">
-        <div class="feature">
-            <h2>Feature One</h2>
-            <p>Describe a key benefit of your app here.</p>
-        </div>
-        <div class="feature">
-            <h2>Feature Two</h2>
-            <p>Describe another key benefit here.</p>
+    <section id="features" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Everything you need to keep moving.</h2>
+                <p>Clean and fast workflow for goals, tasks, and outcomes.</p>
+            </div>
+            <div class="grid">
+                <article class="card">
+                    <h3>Goal planning</h3>
+                    <p>Create goals with milestones so you always know the next step.</p>
+                </article>
+                <article class="card">
+                    <h3>Task focus</h3>
+                    <p>Pick the top tasks for today and finish work without noise.</p>
+                </article>
+                <article class="card">
+                    <h3>Progress view</h3>
+                    <p>Track streaks and progress to stay motivated each week.</p>
+                </article>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Goalixa. All rights reserved.</p>
+    <section id="steps" class="section alt">
+        <div class="container">
+            <div class="section-title">
+                <h2>How it works</h2>
+                <p>Simple steps to turn ideas into action.</p>
+            </div>
+            <div class="grid steps">
+                <div class="card">
+                    <span class="step">01</span>
+                    <h3>Set the goal</h3>
+                    <p>Write a clear goal and define the outcome you want.</p>
+                </div>
+                <div class="card">
+                    <span class="step">02</span>
+                    <h3>Plan the week</h3>
+                    <p>Select milestones and the most important tasks.</p>
+                </div>
+                <div class="card">
+                    <span class="step">03</span>
+                    <h3>Track progress</h3>
+                    <p>Check progress, adjust, and celebrate wins.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta" class="section cta">
+        <div class="container cta-box">
+            <div>
+                <h2>Ready to start?</h2>
+                <p>Log in and build your next goal in minutes.</p>
+            </div>
+            <a class="btn btn-primary" href="/login">Log in to Goalixa</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <strong>Goalixa</strong>
+                <p>Plan better. Finish better.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#features">Features</a>
+                <a href="#steps">How it works</a>
+                <a href="/login">Log in</a>
+            </div>
+            <p class="copyright">&copy; 2026 Goalixa. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="js/main.js"></script>

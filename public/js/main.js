@@ -1,1 +1,1 @@
-console.log("Goalixa Landing Page Loaded");
+console.log("Goalixa landing page ready");
