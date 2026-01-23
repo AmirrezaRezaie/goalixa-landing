@@ -5,7 +5,8 @@ FROM nginx:alpine
 RUN rm /usr/share/nginx/html/*
 
 # Copy landing files
-COPY public /usr/share/nginx/html
+COPY index.html style.css script.js /usr/share/nginx/html/
+COPY assets /usr/share/nginx/html/assets
 
 EXPOSE 80
 
