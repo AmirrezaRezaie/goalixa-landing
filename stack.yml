@@ -1,7 +1,13 @@
 version: "3.8"
+
+networks:
+  goalixa_net:
+    external: true
+
 services:
   landing:
     image: ghcr.io/AmirrezaRezaie/goalixa-landing:latest
+    networks: [goalixa_net]
     ports:
       - "8081:80"
     deploy:
