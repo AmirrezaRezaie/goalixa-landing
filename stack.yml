@@ -6,7 +6,7 @@ networks:
 
 services:
   landing:
-    image: ghcr.io/AmirrezaRezaie/goalixa-landing:latest
+    image: ghcr.io/amirrezarezaie/goalixa-landing:latest
     networks: [goalixa_net]
     ports:
       - "8081:80"
