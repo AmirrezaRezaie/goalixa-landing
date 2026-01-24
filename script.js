@@ -80,20 +80,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     
     // Observe elements to animate
-    document.querySelectorAll('.feature-card, .testimonial-card, .step').forEach(el => {
+    document.querySelectorAll('.reveal').forEach(el => {
         observer.observe(el);
     });
     
     // Simple animation for stats counter
     const stats = document.querySelectorAll('.stat h3');
     if (stats.length > 0) {
-        const animateValue = (element, start, end, duration) => {
+        const animateValue = (element, start, end, duration, formatter) => {
             let startTimestamp = null;
             const step = (timestamp) => {
                 if (!startTimestamp) startTimestamp = timestamp;
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1);
                 const value = Math.floor(progress * (end - start) + start);
-                element.textContent = value + '+';
+                element.textContent = formatter(value);
                 if (progress < 1) {
                     window.requestAnimationFrame(step);
                 }
@@ -106,10 +106,31 @@ document.addEventListener('DOMContentLoaded', function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const stat = entry.target;
-                    const value = parseInt(stat.textContent);
+                    const raw = stat.textContent.trim();
+                    const hasPlus = raw.includes('+');
+                    const suffixMatch = raw.match(/[KM]/);
+                    const suffix = suffixMatch ? suffixMatch[0] : '';
+                    const decimalsMatch = raw.match(/\.(\d+)/);
+                    const decimals = decimalsMatch ? decimalsMatch[1].length : 0;
+                    const baseValue = parseFloat(raw);
+                    let value = baseValue;
+                    if (suffix === 'K') {
+                        value = baseValue * 1000;
+                    } else if (suffix === 'M') {
+                        value = baseValue * 1000000;
+                    }
+                    const formatter = (current) => {
+                        if (suffix) {
+                            const divisor = suffix === 'K' ? 1000 : 1000000;
+                            const displayValue = current / divisor;
+                            const formatted = decimals > 0 ? displayValue.toFixed(decimals) : Math.floor(displayValue);
+                            return formatted + suffix + (hasPlus ? '+' : '');
+                        }
+                        return Math.floor(current) + (hasPlus ? '+' : '');
+                    };
                     if (!stat.classList.contains('animated')) {
                         stat.classList.add('animated');
-                        animateValue(stat, 0, value, 2000);
+                        animateValue(stat, 0, value, 2000, formatter);
                     }
                 }
             });
