@@ -26,7 +26,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set image name (lowercase)
-        id: vars
         run: |
           echo "IMAGE_NAME=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/landing" >> $GITHUB_ENV
 
@@ -40,3 +39,16 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  deploy:
+    name: Deploy to Swarm (VM)
+    needs: build-and-push
+    runs-on: self-hosted
+    steps:
+      - name: Login to GHCR (for private pull)
+        run: |
+          echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u "${{ secrets.GHCR_USERNAME }}" --password-stdin
+
+      - name: Deploy stack
+        run: |
+          docker stack deploy --resolve-image always -c /opt/goalixa-swarm/stack.yml goalixa
