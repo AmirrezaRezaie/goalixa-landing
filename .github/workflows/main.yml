@@ -24,8 +24,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      # ✅ اینجا owner رو lowercase می‌کنیم
       - name: Set image name (lowercase)
         id: vars
         run: |
