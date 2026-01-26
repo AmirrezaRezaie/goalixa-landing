@@ -8,7 +8,7 @@ This is the static landing page for the Goalixa project.
 - Styled with simple CSS
 - Served via Nginx in Docker
 
-## How to Run
+## How to Run.
 
 Build the Docker image:
 
