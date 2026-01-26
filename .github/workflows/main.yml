@@ -43,7 +43,7 @@ jobs:
   deploy:
     name: Deploy to Swarm (VM)
     needs: build-and-push
-    runs-on: self-hosted
+    runs-on: [self-hosted, Linux, X64]
     steps:
       - name: Login to GHCR (for private pull)
         run: |
