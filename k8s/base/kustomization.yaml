@@ -6,3 +6,7 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+
+images:
+  - name: ghcr.io/goalixa/landing
+    newTag: latest  # Change this to specific commit SHA for each deployment
