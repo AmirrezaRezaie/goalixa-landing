@@ -1,12 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: landing-ingress
+  name: landing
   namespace: goalixa-landing
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
-    - host: REPLACE_ME_LANDING_DOMAIN
+    - host: goalixa.com
       http:
         paths:
           - path: /

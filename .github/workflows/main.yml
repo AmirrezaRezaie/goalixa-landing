@@ -38,16 +38,3 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-  deploy:
-    name: Deploy to Swarm (VM)
-    needs: build-and-push
-    runs-on: [self-hosted, Linux, X64]
-    steps:
-      - name: Login to GHCR (for private pull)
-        run: |
-          echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u "${{ secrets.GHCR_USERNAME }}" --password-stdin
-
-      - name: Deploy stack (Swarm)
-        run: |
-          docker stack deploy --with-registry-auth --resolve-image always -c /opt/goalixa-swarm/stack.yml goalixa
