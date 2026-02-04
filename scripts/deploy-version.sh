@@ -13,7 +13,7 @@ if [ -z "$1" ]; then
   echo "Usage: $0 <version>"
   echo ""
   echo "Examples:"
-  echo "  $0 latest              # Deploy latest build."
+  echo "  $0 latest              # Deploy latest build.."
   echo "  $0 abc123              # Deploy specific commit SHA"
   echo "  $0 42                  # Deploy build number 42"
   exit 1
