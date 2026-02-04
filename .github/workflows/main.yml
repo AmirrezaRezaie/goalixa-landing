@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, ubuntu]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,5 +36,40 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:latest
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ env.IMAGE_NAME }}:${{ github.run_number }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          labels: |
+            org.opencontainers.image.source=${{ github.repository }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.created=${{ github.event.head_commit.timestamp }}
+
+      - name: Deploy to Kubernetes
+        env:
+          KUBECONFIG_DATA: ${{ secrets.KUBECONFIG }}
+        run: |
+          if [ -n "$KUBECONFIG_DATA" ]; then
+            echo "$KUBECONFIG_DATA" | base64 -d > /tmp/kubeconfig
+            export KUBECONFIG=/tmp/kubeconfig
+
+            # Update deployment with specific version tag
+            kubectl set image deployment/landing \
+              landing=${{ env.IMAGE_NAME }}:${{ github.sha }} \
+              -n goalixa-landing
+
+            # Add version annotations for tracking
+            kubectl annotate deployment/landing \
+              -n goalixa-landing \
+              deployment.kubernetes.io/revision-sha="${{ github.sha }}" \
+              deployment.kubernetes.io/revision-number="${{ github.run_number }}" \
+              deployment.kubernetes.io/deployed-at="$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+              --overwrite
+
+            # Wait for rollout to complete
+            kubectl rollout status deployment/landing -n goalixa-landing --timeout=5m
+
+            echo "✅ Deployed version ${{ github.run_number }} (commit: ${{ github.sha }})"
+          else
+            echo "⚠️  KUBECONFIG secret not set - skipping deployment"
+            echo "Image built and pushed: ${{ env.IMAGE_NAME }}:${{ github.sha }}"
+          fi
