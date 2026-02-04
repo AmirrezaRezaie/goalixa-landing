@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build-and-push:
-    runs-on: [self-hosted, ubuntu]
+    runs-on: ubuntu-latest
     outputs:
       image_name: ghcr.io/${{ github.repository_owner }}/landing
       image_tag: ${{ github.sha }}
