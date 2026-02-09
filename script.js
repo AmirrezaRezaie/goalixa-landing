@@ -102,61 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.reveal').forEach(el => {
         observer.observe(el);
     });
-    
-    // Simple animation for stats counter
-    const stats = document.querySelectorAll('.stat h3');
-    if (stats.length > 0) {
-        const animateValue = (element, start, end, duration, formatter) => {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const value = Math.floor(progress * (end - start) + start);
-                element.textContent = formatter(value);
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        };
-        
-        // Trigger animation when stats are in view
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const stat = entry.target;
-                    const raw = stat.textContent.trim();
-                    const hasPlus = raw.includes('+');
-                    const suffixMatch = raw.match(/[KM]/);
-                    const suffix = suffixMatch ? suffixMatch[0] : '';
-                    const decimalsMatch = raw.match(/\.(\d+)/);
-                    const decimals = decimalsMatch ? decimalsMatch[1].length : 0;
-                    const baseValue = parseFloat(raw);
-                    let value = baseValue;
-                    if (suffix === 'K') {
-                        value = baseValue * 1000;
-                    } else if (suffix === 'M') {
-                        value = baseValue * 1000000;
-                    }
-                    const formatter = (current) => {
-                        if (suffix) {
-                            const divisor = suffix === 'K' ? 1000 : 1000000;
-                            const displayValue = current / divisor;
-                            const formatted = decimals > 0 ? displayValue.toFixed(decimals) : Math.floor(displayValue);
-                            return formatted + suffix + (hasPlus ? '+' : '');
-                        }
-                        return Math.floor(current) + (hasPlus ? '+' : '');
-                    };
-                    if (!stat.classList.contains('animated')) {
-                        stat.classList.add('animated');
-                        animateValue(stat, 0, value, 2000, formatter);
-                    }
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        stats.forEach(stat => statsObserver.observe(stat));
-    }
 
     // PWA install prompt handling
     if (installBtn) {
