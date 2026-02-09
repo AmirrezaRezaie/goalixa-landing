@@ -75,12 +75,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add scroll effect to navbar
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
-            navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-        } else {
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+        if (window.scrollY > 20) {
+            navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
             navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+        } else {
+            navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
+            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.85)';
         }
     });
     
@@ -134,5 +134,71 @@ document.addEventListener('DOMContentLoaded', function() {
             deferredPrompt = null;
             hideInstall();
         });
+    }
+});
+
+// Demo Mode Functions
+let currentSlide = 1;
+const totalSlides = 6;
+
+function openDemoMode() {
+    const modal = document.getElementById('demo-modal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    currentSlide = 1;
+    updateDemoSlide();
+}
+
+function closeDemoMode() {
+    const modal = document.getElementById('demo-modal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function nextSlide() {
+    if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateDemoSlide();
+    } else {
+        closeDemoMode();
+    }
+}
+
+function prevSlide() {
+    if (currentSlide > 1) {
+        currentSlide--;
+        updateDemoSlide();
+    }
+}
+
+function updateDemoSlide() {
+    // Update slides
+    const slides = document.querySelectorAll('.demo-slide');
+    slides.forEach((slide, index) => {
+        if (index + 1 === currentSlide) {
+            slide.classList.add('active');
+        } else {
+            slide.classList.remove('active');
+        }
+    });
+
+    // Update progress bar
+    const progressBar = document.getElementById('demo-progress-bar');
+    const progress = ((currentSlide - 1) / (totalSlides - 1)) * 100;
+    progressBar.style.width = progress + '%';
+    progressBar.style.background = 'linear-gradient(90deg, var(--primary), var(--primary-dark))';
+}
+
+// Close demo modal on Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeDemoMode();
+    }
+});
+
+// Close demo modal when clicking outside
+document.getElementById('demo-modal')?.addEventListener('click', function(event) {
+    if (event.target === this || event.target.classList.contains('demo-modal-overlay')) {
+        closeDemoMode();
     }
 });
