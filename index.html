@@ -6,8 +6,10 @@
     <title>Goalixa - Goals, Plans, Projects, Tasks</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/2838/2838773.png">
 </head>
 <body>
     <!-- Navigation -->
@@ -25,8 +27,10 @@
                     <a href="#faq">FAQ</a>
                 </div>
             <div class="nav-cta">
-                <a href="https://auth.goalixa.com/" class="btn btn-secondary btn-nav">Login</a>
                 <a href="https://auth.goalixa.com/register" class="btn btn-primary btn-nav">Sign In</a>
+                <button class="btn btn-demo btn-nav" onclick="openDemoMode()">
+                    <i class="fas fa-play"></i> Demo
+                </button>
                 <button id="install-btn" class="btn btn-secondary btn-nav install-btn" type="button">Install App</button>
             </div>
         </div>
@@ -44,11 +48,11 @@
                 <p class="hero-subtitle">Goalixa helps you break outcomes into projects, tasks, and weekly focus so you stay on track and finish what matters.</p>
                 <div class="hero-buttons">
                     <a href="https://auth.goalixa.com/register" class="btn btn-primary">
-                        <i class="fas fa-user-plus"></i> Create Free Account
+                        <i class="fas fa-rocket"></i> Let's Go!
                     </a>
-                    <a href="https://auth.goalixa.com/" class="btn btn-secondary">
-                        <i class="fas fa-right-to-bracket"></i> Log In
-                    </a>
+                    <button class="btn btn-demo" onclick="openDemoMode()">
+                        <i class="fas fa-play-circle"></i> Watch Demo
+                    </button>
                 </div>
             </div>
             <div class="hero-image">
@@ -56,37 +60,68 @@
                     <div class="phone-screen">
                         <div class="app-screen">
                             <div class="app-header">
-                                <h4>Goalixa</h4>
-                                <span>Today's Focus</span>
+                                <div class="app-header-top">
+                                    <h4>🎯 Goalixa</h4>
+                                    <span class="app-date">Today</span>
+                                </div>
+                                <p class="app-greeting">Ready to make progress?</p>
                             </div>
-                            <div class="match-info">
-                                <div class="team">
-                                    <div class="team-logo">Q4</div>
-                                    <span>Launch MVP</span>
+
+                            <!-- Goal Progress Card -->
+                            <div class="progress-card">
+                                <div class="progress-header">
+                                    <div class="goal-icon">🚀</div>
+                                    <div class="goal-info">
+                                        <h5>Launch MVP</h5>
+                                        <span class="goal-deadline">12 days left</span>
+                                    </div>
+                                    <div class="progress-percent">68%</div>
                                 </div>
-                                <div class="score">
-                                    <span>68%</span>
-                                </div>
-                                <div class="team">
-                                    <div class="team-logo">WK</div>
-                                    <span>Grow Pipeline</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 68%"></div>
                                 </div>
                             </div>
-                            <div class="goal-tracker">
-                                <h5>Key Tasks</h5>
-                                <div class="goals-list">
-                                    <div class="goal-item">
-                                        <span class="player">Define success metrics</span>
-                                        <span class="assist">Owner: Product</span>
+
+                            <!-- Today's Tasks -->
+                            <div class="tasks-section">
+                                <div class="section-title">
+                                    <h5>Today's Focus</h5>
+                                    <span class="task-count">3 tasks</span>
+                                </div>
+                                <div class="tasks-list">
+                                    <div class="task-item">
+                                        <div class="task-checkbox">✓</div>
+                                        <div class="task-content">
+                                            <span class="task-name">Design homepage</span>
+                                            <span class="task-time">📅 25 min</span>
+                                        </div>
                                     </div>
-                                    <div class="goal-item">
-                                        <span class="player">Ship onboarding flow</span>
-                                        <span class="assist">Due: Thu</span>
+                                    <div class="task-item active">
+                                        <div class="task-checkbox">⏱</div>
+                                        <div class="task-content">
+                                            <span class="task-name">Write API docs</span>
+                                            <span class="task-time">🔲 In progress</span>
+                                        </div>
                                     </div>
-                                    <div class="goal-item">
-                                        <span class="player">Interview 5 users</span>
-                                        <span class="assist">Status: Scheduled</span>
+                                    <div class="task-item">
+                                        <div class="task-checkbox">○</div>
+                                        <div class="task-content">
+                                            <span class="task-name">Test user flow</span>
+                                            <span class="task-time">⏰ 2:00 PM</span>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <!-- Quick Stats -->
+                            <div class="quick-stats">
+                                <div class="stat-item">
+                                    <span class="stat-icon">🔥</span>
+                                    <span class="stat-label">7 day streak</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-icon">⏱</span>
+                                    <span class="stat-label">2h 15m today</span>
                                 </div>
                             </div>
                         </div>
@@ -280,11 +315,11 @@
             <p>Join focused individuals who turn goals into consistent action and measurable progress.</p>
             <div class="cta-actions">
                 <a href="https://auth.goalixa.com/register" class="btn btn-primary btn-large">
-                    <i class="fas fa-bolt"></i> Create Free Account
+                    <i class="fas fa-rocket"></i> Let's Go!
                 </a>
-                <a href="https://auth.goalixa.com/" class="btn btn-outline-light btn-large">
-                    <i class="fas fa-right-to-bracket"></i> Log In
-                </a>
+                <button class="btn btn-outline-light btn-large" onclick="openDemoMode()">
+                    <i class="fas fa-play-circle"></i> Watch Demo
+                </button>
             </div>
             <p class="cta-note">No credit card required. Completely free.</p>
         </div>
@@ -330,6 +365,139 @@
             </div>
         </div>
     </footer>
+
+    <!-- Demo Modal -->
+    <div id="demo-modal" class="demo-modal">
+        <div class="demo-modal-overlay" onclick="closeDemoMode()"></div>
+        <div class="demo-modal-content">
+            <button class="demo-modal-close" onclick="closeDemoMode()">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Demo Progress Bar -->
+            <div class="demo-progress">
+                <div class="demo-progress-bar" id="demo-progress-bar"></div>
+            </div>
+
+            <!-- Demo Slides -->
+            <div class="demo-slides" id="demo-slides">
+
+                <!-- Slide 1: Welcome -->
+                <div class="demo-slide active" data-slide="1">
+                    <div class="demo-emoji">🎯</div>
+                    <h2>Welcome to Goalixa</h2>
+                    <p>Turn your big goals into clear, actionable plans. Let us show you how!</p>
+                    <button class="btn btn-primary btn-large" onclick="nextSlide()">
+                        Get Started <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Slide 2: Goals -->
+                <div class="demo-slide" data-slide="2">
+                    <div class="demo-emoji">🚀</div>
+                    <h2>Set Your Goals</h2>
+                    <p>Create long-term goals with deadlines and track your progress visually. Break big ambitions into achievable milestones.</p>
+                    <div class="demo-preview">
+                        <div class="demo-goal-card">
+                            <span class="demo-icon">🎯</span>
+                            <div class="demo-info">
+                                <h4>Launch MVP</h4>
+                                <div class="demo-progress-bar-small">
+                                    <div class="demo-progress-fill" style="width: 68%"></div>
+                                </div>
+                                <span class="demo-percent">68%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-nav-buttons">
+                        <button class="btn btn-secondary" onclick="prevSlide()">Previous</button>
+                        <button class="btn btn-primary" onclick="nextSlide()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Projects -->
+                <div class="demo-slide" data-slide="3">
+                    <div class="demo-emoji">📁</div>
+                    <h2>Organize with Projects</h2>
+                    <p>Break your goals into projects and tasks. See everything in one place with clear priorities.</p>
+                    <div class="demo-preview">
+                        <div class="demo-project-list">
+                            <div class="demo-project-item">
+                                <span class="demo-checkbox">✓</span>
+                                <span>Design homepage</span>
+                            </div>
+                            <div class="demo-project-item">
+                                <span class="demo-checkbox active">⏱</span>
+                                <span>Write API docs</span>
+                            </div>
+                            <div class="demo-project-item">
+                                <span class="demo-checkbox">○</span>
+                                <span>Test user flow</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-nav-buttons">
+                        <button class="btn btn-secondary" onclick="prevSlide()">Previous</button>
+                        <button class="btn btn-primary" onclick="nextSlide()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Slide 4: Time Tracking -->
+                <div class="demo-slide" data-slide="4">
+                    <div class="demo-emoji">⏱</div>
+                    <h2>Track Your Time</h2>
+                    <p>Built-in Pomodoro timer helps you stay focused. Track time spent on tasks and see where your day goes.</p>
+                    <div class="demo-preview">
+                        <div class="demo-timer">
+                            <span class="demo-time">25:00</span>
+                            <span class="demo-label">Focus Time</span>
+                        </div>
+                    </div>
+                    <div class="demo-nav-buttons">
+                        <button class="btn btn-secondary" onclick="prevSlide()">Previous</button>
+                        <button class="btn btn-primary" onclick="nextSlide()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Slide 5: Habits -->
+                <div class="demo-slide" data-slide="5">
+                    <div class="demo-emoji">🔥</div>
+                    <h2>Build Habits</h2>
+                    <p>Create daily habits and track your streaks. Stay consistent and achieve your goals one day at a time.</p>
+                    <div class="demo-preview">
+                        <div class="demo-habit-card">
+                            <span class="demo-streak">🔥 7 day streak</span>
+                            <div class="demo-habit-days">
+                                <span class="demo-day done">M</span>
+                                <span class="demo-day done">T</span>
+                                <span class="demo-day done">W</span>
+                                <span class="demo-day done">T</span>
+                                <span class="demo-day done">F</span>
+                                <span class="demo-day today">S</span>
+                                <span class="demo-day">S</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-nav-buttons">
+                        <button class="btn btn-secondary" onclick="prevSlide()">Previous</button>
+                        <button class="btn btn-primary" onclick="nextSlide()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Slide 6: Ready -->
+                <div class="demo-slide" data-slide="6">
+                    <div class="demo-emoji">✨</div>
+                    <h2>Ready to Get Started?</h2>
+                    <p>Join thousands of focused individuals achieving their goals with Goalixa. It's completely free!</p>
+                    <a href="https://auth.goalixa.com/register" class="btn btn-primary btn-large">
+                        <i class="fas fa-rocket"></i> Let's Go!
+                    </a>
+                    <p class="demo-note">No credit card required</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
