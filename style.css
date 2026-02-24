@@ -193,20 +193,13 @@ p {
 .nav-brand {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--primary);
+    gap: 12px;
 }
 
-.nav-brand i {
-    font-size: 1.8rem;
-}
-
-.brand-name {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+.brand-logo {
+    width: 146px;
+    height: auto;
+    display: block;
 }
 
 .nav-menu {
