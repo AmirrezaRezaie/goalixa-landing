@@ -10,4 +10,4 @@ resources:
 images:
   - name: ghcr.io/goalixa/landing
     newName: harbor.goalixa.com/goalixa-landing/landing
-    newTag: sha-placeholder
+    newTag: latest
