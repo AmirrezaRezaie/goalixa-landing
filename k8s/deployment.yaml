@@ -23,7 +23,7 @@ spec:
       containers:
         - name: landing
           image: ghcr.io/goalixa/landing:latest # kustomize will replace this
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 80
