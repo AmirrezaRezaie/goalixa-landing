@@ -14,3 +14,4 @@ Build the Docker image:
 
 ```bash
 docker build -t goalixa-landing .
+# 1772026295
