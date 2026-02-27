@@ -6,7 +6,7 @@ function getCookie(name) {
     return null;
 }
 
-// Check authentication and redirect
+// Check authentication and redirect"
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', function() {
     // Check for authentication cookie
