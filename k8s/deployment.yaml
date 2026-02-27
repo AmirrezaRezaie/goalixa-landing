@@ -19,7 +19,7 @@ spec:
         prometheus.io/scrape: "false"
     spec:
       imagePullSecrets:
-        - name: ghcr-pull
+        - name: harbor-pull
       containers:
         - name: landing
           image: ghcr.io/goalixa/landing:latest # kustomize will replace this
